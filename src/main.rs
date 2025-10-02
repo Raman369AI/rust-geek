@@ -1,22 +1,36 @@
-use std::io;
-
-use rand::Rng;
-
 fn main() {
-    println!("Guess the number!");
-    // Generate a random number between 1 and 100
-    let secret_number = rand::thread_rng().gen_range(1..=100);
+    ruler(5,6)
+}
 
+
+
+fn draw_tick(length:u32) {
+    let mut tick = "-";
+    let repeated = tick.repeat(length as usize);
+    println!("{}", repeated);
     
-    println!("Please input your guess.");
+}
 
-    let mut guess = String::new();
 
-    io::stdin()
-        .read_line(&mut guess)
-        .expect("Failed to read line");
 
-    println!("You guessed: {guess}");
-    println!("The secret number is: {secret_number}");
+fn draw_interval(length:u32) {
+    let mut tick = "-";
+    if length > 0{draw_interval(length-1);
+    draw_tick(length);
+    draw_interval(length-1);
+    }
+}
+
+
+
+
+
+fn ruler(length:u32,ent:u32) {
+    let tick = "-";
+    let repeated = tick.repeat(length as usize);
+    println!("{}", repeated);
+    for i in 0..ent {
+        draw_interval(length);
+    }
 
 }
